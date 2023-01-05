@@ -1,3 +1,59 @@
+## [4.10.2](https://github.com/OptimalBits/bull/compare/v4.10.1...v4.10.2) (2022-11-24)
+
+
+### Bug Fixes
+
+* **queue:** throw error when needed instead of hiding it in a closure ([8a742c1](https://github.com/OptimalBits/bull/commit/8a742c1176e7147e2069602f18089d8becb4cb15))
+
+## [4.10.1](https://github.com/OptimalBits/bull/compare/v4.10.0...v4.10.1) (2022-10-13)
+
+
+### Bug Fixes
+
+* support for instantiation using redisUrl ([6288f7d](https://github.com/OptimalBits/bull/commit/6288f7de9b82e712e480510eb10c03bd4d1cd24e))
+
+# [4.10.0](https://github.com/OptimalBits/bull/compare/v4.9.0...v4.10.0) (2022-09-29)
+
+
+### Features
+
+* **types:** add typescript types to package ([e793f8d](https://github.com/OptimalBits/bull/commit/e793f8d1502bc5ed4a2e15087dc048c18e5e8644))
+
+# [4.9.0](https://github.com/OptimalBits/bull/compare/v4.8.5...v4.9.0) (2022-09-05)
+
+
+### Features
+
+* support .cjs files ([75e6775](https://github.com/OptimalBits/bull/commit/75e6775fc3720563aac9cd9a07d1722dfbdfa177))
+
+## [4.8.5](https://github.com/OptimalBits/bull/compare/v4.8.4...v4.8.5) (2022-07-27)
+
+
+### Performance Improvements
+
+* **clean:** use ZRANGEBYSCORE to improve performance ([#2363](https://github.com/OptimalBits/bull/issues/2363)) ([3331188](https://github.com/OptimalBits/bull/commit/3331188bce510e0bb4749d92cb63f4c73203d076))
+
+## [4.8.4](https://github.com/OptimalBits/bull/compare/v4.8.3...v4.8.4) (2022-06-16)
+
+
+### Bug Fixes
+
+* **worker:** better disconnect when blocking connection ([b9ea7f4](https://github.com/OptimalBits/bull/commit/b9ea7f4780948d4556548e6bf13e2c3271939d12))
+
+## [4.8.3](https://github.com/OptimalBits/bull/compare/v4.8.2...v4.8.3) (2022-05-12)
+
+
+### Bug Fixes
+
+* **stalled-jobs:** move stalled jobs to wait in batches ([2f1fb6c](https://github.com/OptimalBits/bull/commit/2f1fb6cdc1329f98b2dd30e847b5a79839db0346))
+
+## [4.8.2](https://github.com/OptimalBits/bull/compare/v4.8.1...v4.8.2) (2022-04-21)
+
+
+### Bug Fixes
+
+* unlock job when moving it to delayed ([#2329](https://github.com/OptimalBits/bull/issues/2329)) ([11eae6b](https://github.com/OptimalBits/bull/commit/11eae6b960c83b47dadb22991b2b3e239c177508))
+
 ## [4.8.1](https://github.com/OptimalBits/bull/compare/v4.8.0...v4.8.1) (2022-03-21)
 
 

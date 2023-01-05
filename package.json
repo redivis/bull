@@ -1,11 +1,12 @@
 {
   "name": "bull",
-  "version": "4.8.1",
+  "version": "4.10.2",
   "description": "Job manager",
   "engines": {
-    "node": ">=10.1"
+    "node": ">=12"
   },
   "main": "./index.js",
+  "types": "./index.d.ts",
   "repository": {
     "type": "git",
     "url": "git://github.com/OptimalBits/bull.git"
@@ -23,10 +24,9 @@
     "cron-parser": "^4.2.1",
     "debuglog": "^1.0.0",
     "get-port": "^5.1.1",
-    "ioredis": "^4.28.5",
+    "ioredis": "^5.0.0",
     "lodash": "^4.17.21",
     "msgpackr": "^1.5.2",
-    "p-timeout": "^3.2.0",
     "semver": "^7.3.2",
     "uuid": "^8.3.0"
   },

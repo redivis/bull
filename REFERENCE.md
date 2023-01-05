@@ -74,6 +74,7 @@ interface QueueOptions {
   prefix?: string = 'bull'; // prefix for all queue keys.
   metrics?: MetricsOpts; // Configure metrics
   defaultJobOptions?: JobOpts;
+  createClient?: (type: enum('client', 'subscriber'), redisOpts?: RedisOpts) => redisClient,
   settings?: AdvancedSettings;
 }
 ```
@@ -166,9 +167,9 @@ backoffStrategies: {
 
 ```ts
 /**
- * Consider these as overloaded functions. Since method overloading doesn't exist in javacript
- * bull recognizes the desired function call by checking the parameters' types. Make sure you
- * comply with one of the below defined patterns.
+ * Consider these as overloaded functions. Since method overloading doesn't exist in JavaScript,
+ * Bull recognizes the desired function call by checking the parameters' types.
+ * Make sure you comply with one of the below defined patterns.
  *
  * Note: Concurrency defaults to 1 if not specified.
  */
@@ -274,6 +275,9 @@ An optional name can be added, so that only process functions defined for that n
 **Note:**
 You need to define _processors_ for all the named jobs that you add to your queue or the queue will complain that you are missing a processor for the given job, unless you use the `*` as job name when defining the processor.
 
+**Note:**
+Considering all jobs in a finished state (`failed` or `completed`) are stored in Redis, depending on the number of jobs running and your Redis setup, you might want to setup a default maximum number of jobs kept, using the `removeOnComplete` and `removeOnFail` options when creating a queue so Redis does not end up running out of memory.
+
 ```typescript
 interface JobOpts {
   priority: number; // Optional priority value. ranges from 1 (highest priority) to MAX_INT  (lowest priority). Note that
@@ -337,7 +341,7 @@ export interface KeepJobs {
 It is important to note that jobs are _not_ proactively stopped after the given `timeout`. The job is marked as failed
 and the job's promise is rejected, but Bull has no way to stop the processor function externally.
 
-If you need to a job to stop processing after it times out, here are a couple suggestions:
+If you need a job to stop processing after it times out, here are a couple suggestions:
  - Have the job itself periodically check `job.getStatus()`, and exit if the status becomes `'failed'`
  - Implement the job as a _cancelable promise_. If the processor's promise has a `cancel()` method, it will
    be called when a job times out, and the job can respond accordingly. (Note: currently this only works for
@@ -661,7 +665,8 @@ getJobCounts() : Promise<JobCounts>
 
 Returns a promise that will return the job counts for the given queue.
 
-```typescript{
+```typescript
+{
   interface JobCounts {
     waiting: number,
     active: number,
@@ -880,6 +885,10 @@ await queue.obliterate({ force: true });
 A job includes all data needed to perform its execution, as well as the progress method needed to update its progress.
 
 The most important property for the user is `Job#data` that includes the object that was passed to [`Queue#add`](#queueadd), and that is normally used to perform the job.
+
+Other useful job properties:
+* `job.attemptsMade`: number of failed attempts.
+* `job.finishedOn`: Unix Timestamp, when job is completed or finally failed after all attempts.
 
 ### Job#progress
 
