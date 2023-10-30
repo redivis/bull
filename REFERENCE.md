@@ -68,13 +68,12 @@ The optional `url` argument, allows to specify a redis connection string such as
 
 ```typescript
 interface QueueOptions {
-  createClient?(type: 'client' | 'subscriber' | 'bclient', config?: Redis.RedisOptions): Redis.Redis | Redis.Cluster;
+  createClient?: (type: 'client' | 'subscriber' | 'bclient', config?: Redis.RedisOptions) => Redis.Redis | Redis.Cluster;
   limiter?: RateLimiter;
   redis?: RedisOpts;
   prefix?: string = 'bull'; // prefix for all queue keys.
   metrics?: MetricsOpts; // Configure metrics
   defaultJobOptions?: JobOpts;
-  createClient?: (type: enum('client', 'subscriber'), redisOpts?: RedisOpts) => redisClient,
   settings?: AdvancedSettings;
 }
 ```
@@ -389,6 +388,7 @@ await queue.add({}, { jobId: 'example' }) // Will not be created, conflicts with
 interface BackoffOpts {
   type: string; // Backoff type, which can be either `fixed` or `exponential`. A custom backoff strategy can also be specified in `backoffStrategies` on the queue settings.
   delay: number; // Backoff delay, in milliseconds.
+  options?: any; // Options for custom strategies
 }
 ```
 

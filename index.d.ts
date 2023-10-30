@@ -64,7 +64,7 @@ declare namespace Bull {
      * Options passed into the `ioredis` constructor's `options` parameter.
      * `connectionName` is overwritten with `Queue.clientName()`. other properties are copied
      */
-    redis?: Redis.RedisOptions | string| undefined;
+    redis?: Redis.RedisOptions | string | undefined;
 
     /**
      * When specified, the `Queue` will use this function to create new `ioredis` client connections.
@@ -85,6 +85,12 @@ declare namespace Bull {
     limiter?: RateLimiter | undefined;
 
     defaultJobOptions?: JobOptions | undefined;
+
+    metrics?: MetricsOpts; // Configure metrics
+  }
+
+  interface MetricsOpts {
+    maxDataPoints?: number; //  Max number of data points to collect, granularity is fixed at one minute.
   }
 
   interface AdvancedSettings {
@@ -371,7 +377,7 @@ declare namespace Bull {
     /**
      * Options for custom strategies
      */
-    strategyOptions?: any;
+    options?: any;
   }
 
   interface RepeatOptions {
@@ -389,6 +395,11 @@ declare namespace Bull {
      * Number of times the job should repeat at max.
      */
     limit?: number | undefined;
+
+    /**
+     * The start value for the repeat iteration count.
+     */
+    count?: number | undefined;
   }
 
   interface CronRepeatOptions extends RepeatOptions {
@@ -431,7 +442,14 @@ declare namespace Bull {
     /**
      * Repeat job according to a cron specification
      */
-    repeat?: CronRepeatOptions | EveryRepeatOptions | undefined;
+    repeat?:
+      | ((CronRepeatOptions | EveryRepeatOptions) & {
+          /**
+           * The key for the repeatable job metadata in Redis.
+           */
+          readonly key?: string;
+        })
+      | undefined;
 
     /**
      * Backoff setting for automatic retries if the job fails
@@ -815,6 +833,19 @@ declare namespace Bull {
     ): Promise<Array<Job<T>>>;
 
     /**
+     * Returns a promise that resolves to a Metrics object.
+     */
+    getMetrics(type: 'completed' | 'failed', start?: number, end?: number): Promise<{
+      meta: {
+        count: number;
+        prevTS: number;
+        prevCount: number;
+      };
+      data: number[];
+      count: number;
+    }>
+
+    /**
      * Returns a promise that resolves to the next job in queue.
      */
     getNextJob(): Promise<Job<T> | undefined>;
@@ -837,7 +868,7 @@ declare namespace Bull {
     /**
      * Returns a promise that resolves with the job counts for the given queue of the given job statuses.
      */
-    getJobCountByTypes(types: JobStatus[] | JobStatus): Promise<JobCounts>;
+    getJobCountByTypes(types: JobStatus[] | JobStatus): Promise<number>;
 
     /**
      * Returns a promise that resolves with the quantity of completed jobs.
@@ -886,6 +917,27 @@ declare namespace Bull {
       status?: JobStatusClean,
       limit?: number
     ): Promise<Array<Job<T>>>;
+
+    /**
+     * Returns a promise that resolves to a Metrics object.
+     * @param type Job metric type either 'completed' or 'failed'
+     * @param start Start point of the metrics, where 0 is the newest point to be returned.
+     * @param end End point of the metrics, where -1 is the oldest point to be returned.
+     * @returns - Returns an object with queue metrics.
+     */
+    getMetrics(
+      type: 'completed' | 'failed',
+      start?: number,
+      end?: number
+    ): Promise<{
+      meta: {
+        count: number;
+        prevTS: number;
+        prevCount: number;
+      };
+      data: number[];
+      count: number;
+    }>;
 
     /**
      * Returns a promise that marks the start of a transaction block.

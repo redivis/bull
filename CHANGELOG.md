@@ -1,3 +1,64 @@
+## [4.11.4](https://github.com/OptimalBits/bull/compare/v4.11.3...v4.11.4) (2023-10-14)
+
+
+### Bug Fixes
+
+* catch pause errors when closing ([ccb6cc7](https://github.com/OptimalBits/bull/commit/ccb6cc7ecca8c726fc14509536831f665ac49701))
+
+## [4.11.3](https://github.com/OptimalBits/bull/compare/v4.11.2...v4.11.3) (2023-08-11)
+
+
+### Bug Fixes
+
+* **types:** make repeat option key optional ([934ec98](https://github.com/OptimalBits/bull/commit/934ec9875c6e04c3e771b6c6ba212e3693d3a25b))
+
+## [4.11.2](https://github.com/OptimalBits/bull/compare/v4.11.1...v4.11.2) (2023-08-08)
+
+
+### Bug Fixes
+
+* **worker:** better client name support ([5910f44](https://github.com/OptimalBits/bull/commit/5910f44b03a264d979c8ade54d64d13fdc908b51))
+
+## [4.11.1](https://github.com/OptimalBits/bull/compare/v4.11.0...v4.11.1) (2023-08-08)
+
+
+### Bug Fixes
+
+* **queue:** deep clone opts ([#2634](https://github.com/OptimalBits/bull/issues/2634)) fixes [#2633](https://github.com/OptimalBits/bull/issues/2633) ([35f1da3](https://github.com/OptimalBits/bull/commit/35f1da3cf631bee97e96a774d9f1127466e7a66a))
+
+# [4.11.0](https://github.com/OptimalBits/bull/compare/v4.10.4...v4.11.0) (2023-08-08)
+
+
+### Bug Fixes
+
+* add mising getMetrics type ([#2640](https://github.com/OptimalBits/bull/issues/2640)) ([a217a7d](https://github.com/OptimalBits/bull/commit/a217a7d56d52385eb56ffe386b7503eca9a24604))
+* remove deprecated debuglog ([4ce36fe](https://github.com/OptimalBits/bull/commit/4ce36febe3a63a45198e2fe24b46fc371ee3f6e5))
+* **types:** add missing keys to repeat opts ([e4e6457](https://github.com/OptimalBits/bull/commit/e4e64572a3ad259d9cb90d5dec81e8565eeadca1))
+* **types:** rename strategyOptions to options to reflect js file ([bae6427](https://github.com/OptimalBits/bull/commit/bae6427ce9d9fac26b198402068bd84647fd8208))
+* **typings:** return type of getJobCountByTypes ([#2622](https://github.com/OptimalBits/bull/issues/2622)) ([47722ed](https://github.com/OptimalBits/bull/commit/47722ed791429b087128ce5f35847663b2d8fc9c))
+* **worker:** high-memory-usage-when-providing-float-to-concurrency ([#2620](https://github.com/OptimalBits/bull/issues/2620)) ([dcca1e8](https://github.com/OptimalBits/bull/commit/dcca1e8c39b121fb01ac299bec30a3d011059c1f))
+* change option name to match ts declaration ([909a07e](https://github.com/OptimalBits/bull/commit/909a07e27075a63b9ca178a3074b0b5c80d86355))
+* ts declaration metrics option and getMetrics function ([11331b7](https://github.com/OptimalBits/bull/commit/11331b718a8e534ac6822917a536eab32b10446b))
+
+
+### Features
+
+* upgrade ioredis to 5.3.2 ([e1883f0](https://github.com/OptimalBits/bull/commit/e1883f01c2cb23a51b5485ef8048c4268ee968ea))
+
+## [4.10.4](https://github.com/OptimalBits/bull/compare/v4.10.3...v4.10.4) (2023-02-09)
+
+
+### Bug Fixes
+
+* **retry:** handle pause queue status ([9f945d6](https://github.com/OptimalBits/bull/commit/9f945d60c69e8b5d7b46f58189a1c49a83897099))
+
+## [4.10.3](https://github.com/OptimalBits/bull/compare/v4.10.2...v4.10.3) (2023-02-03)
+
+
+### Bug Fixes
+
+* don't reschedule delay timer if closing ([#2535](https://github.com/OptimalBits/bull/issues/2535)) ([8a0292a](https://github.com/OptimalBits/bull/commit/8a0292a574df82a62d718e13d8995800fd8529d0))
+
 ## [4.10.2](https://github.com/OptimalBits/bull/compare/v4.10.1...v4.10.2) (2022-11-24)
 
 
