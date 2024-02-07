@@ -1,3 +1,31 @@
+## [4.12.2](https://github.com/OptimalBits/bull/compare/v4.12.1...v4.12.2) (2024-01-17)
+
+
+### Bug Fixes
+
+* **dependencies:** upgrade msgpackr ([cc83ae2](https://github.com/OptimalBits/bull/commit/cc83ae297e96344f94039401be5097d7f05ab10b))
+
+## [4.12.1](https://github.com/OptimalBits/bull/compare/v4.12.0...v4.12.1) (2024-01-15)
+
+
+### Bug Fixes
+
+* **deps:** bump msgpackr from 1.5.2 to 1.10.1 ([#2697](https://github.com/OptimalBits/bull/issues/2697)) ([b27c90d](https://github.com/OptimalBits/bull/commit/b27c90d8b106cc5319e712df2386ddc35946ec3d))
+
+# [4.12.0](https://github.com/OptimalBits/bull/compare/v4.11.5...v4.12.0) (2023-12-18)
+
+
+### Features
+
+* add missing extendLock definition ([14432ff](https://github.com/OptimalBits/bull/commit/14432ff8a5e743d97c82a360c9d6a92204b1a684))
+
+## [4.11.5](https://github.com/OptimalBits/bull/compare/v4.11.4...v4.11.5) (2023-11-11)
+
+
+### Bug Fixes
+
+* pass redis string as opts into queue ([e94f568](https://github.com/OptimalBits/bull/commit/e94f568085de079fc42b876233a060ba11ec946e))
+
 ## [4.11.4](https://github.com/OptimalBits/bull/compare/v4.11.3...v4.11.4) (2023-10-14)
 
 
